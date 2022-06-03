@@ -480,9 +480,9 @@
 													"font": "Arial;13;1",
 													"left": 957,
 													"top": 47,
-													"width": 88.025390625,
+													"width": 216.60986328125,
 													"height": 13,
-													"text": "Upi Gateway"
+													"text": "Upi Gateway from customer bank"
 												},
 												{
 													"_type": "LabelView",
@@ -513,7 +513,7 @@
 											"font": "Arial;13;0",
 											"left": 952,
 											"top": 40,
-											"width": 98.025390625,
+											"width": 226.60986328125,
 											"height": 40,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGBJ+VzcCrZM4M="
@@ -538,7 +538,7 @@
 												"$ref": "AAAAAAGBJ+VzbyrWsoc="
 											},
 											"font": "Arial;13;0",
-											"left": 1001,
+											"left": 1065,
 											"top": 80,
 											"width": 1,
 											"height": 375
@@ -547,7 +547,7 @@
 									"font": "Arial;13;0",
 									"left": 952,
 									"top": 40,
-									"width": 98.025390625,
+									"width": 226.60986328125,
 									"height": 415,
 									"nameCompartment": {
 										"$ref": "AAAAAAGBJ+VzcCrYOSY="
@@ -1356,7 +1356,7 @@
 												"$ref": "AAAAAAGBKEJKXRz7iQU="
 											},
 											"font": "Arial;13;0",
-											"left": 845,
+											"left": 877,
 											"top": 384,
 											"width": 122.84619140625,
 											"height": 13,
@@ -1379,7 +1379,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 906,
+											"left": 938,
 											"top": 369,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -1400,7 +1400,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 906,
+											"left": 938,
 											"top": 404,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -1420,7 +1420,7 @@
 												"$ref": "AAAAAAGBKEJKXRz7iQU="
 											},
 											"font": "Arial;13;0",
-											"left": 994,
+											"left": 1058,
 											"top": 400,
 											"width": 14,
 											"height": 29
@@ -1433,7 +1433,7 @@
 									"tail": {
 										"$ref": "AAAAAAGBKEC5HByqMcY="
 									},
-									"points": "818:400;994:400",
+									"points": "818:400;1058:400",
 									"nameLabel": {
 										"$ref": "AAAAAAGBKEJKXRz9XhA="
 									},
@@ -1467,7 +1467,7 @@
 												"$ref": "AAAAAAGBKEJ6IR0R7T0="
 											},
 											"font": "Arial;13;0",
-											"left": 842,
+											"left": 874,
 											"top": 428,
 											"width": 127.181640625,
 											"height": 13,
@@ -1490,7 +1490,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 905,
+											"left": 937,
 											"top": 443,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -1511,7 +1511,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 906,
+											"left": 938,
 											"top": 408,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -1545,7 +1545,7 @@
 									"tail": {
 										"$ref": "AAAAAAGBJ+VzcCrdido="
 									},
-									"points": "994:424;818:424",
+									"points": "1058:424;818:424",
 									"nameLabel": {
 										"$ref": "AAAAAAGBKEJ6IR0TYuU="
 									},
@@ -2107,7 +2107,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGBJ+TmjCpqyVQ="
 							},
-							"name": "Upi Gateway",
+							"name": "Upi Gateway from customer bank",
 							"represent": {
 								"$ref": "AAAAAAGBJ+VzbyrVRKw="
 							},
@@ -2162,8 +2162,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGBJ+Tmiypp2pM="
 					},
-					"name": "Role4",
-					"type": ""
+					"name": "Role4"
 				},
 				{
 					"_type": "UMLAttribute",
