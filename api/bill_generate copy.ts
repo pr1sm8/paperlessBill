@@ -1,71 +1,10 @@
-const cors = require("cors");
-const fs = require("fs");
 import express, { Response, Request, NextFunction } from "express";
-import { generateQR } from "../scripts/generateQR";
-import crypto from "crypto";
-import { bill_generate } from "./bill_generate";
-const redis = require('redis');
-const port = process.env.SERVER_PORT || 4000;
-const redis_host = process.env.REDIS_HOST || 'localhost';
-const redis_port = process.env.REDIS_PORT || 6379;
+import redis from "redis";
 
-const redisClient = redis.createClient({
-    host: redis_host,
-    port: redis_port
-});
-redisClient.connect();
-
-function requireQueryParams(params: Array<string>) {
-    return (req: Request, res: Response, next: NextFunction) => {
-        const fails = [];
-        for (const param of params) {
-            if (!req.query[param]) {
-                fails.push(param);
-            }
-        }
-        if (fails.length > 0) {
-            res.status(400).send(`${fails.join(",")} required`);
-        } else {
-            next();
-        }
-    };
-}
-
-
-const app = express();
-
-app.use(express.static('public'));
-
-
-app.get('/', requireQueryParams(["data"]), (req, res) => {
-
-    res.send("yep");
-});
-app.get('/getQR', requireQueryParams(["data"]), async (req, res) => {
-    const data = req.query.data!.toString();
-    const sessionID = crypto.createHash('sha256').update(data).digest('hex');
-    redisClient.setEx(sessionID, 3000, data);
-    // let hash = await redisClient.get(sessionID);
-    // console.log(hash);
-    console.log(sessionID);
-    await generateQR(sessionID);
-
-    const encodedRequestBody = data.toString();
-    const decodedRequestBodyString = Buffer.from(encodedRequestBody, "base64");
-    const requestBodyObject = JSON.parse(decodedRequestBodyString.toString());
-    fs.readFile("/Users/yash/Desktop/YASH/programming/hackathons/paperlessBill/" + sessionID + ".svg","utf8", (err: Error, result: string) => {
-        res.send(result);
-    });
-
-
-
-
-})
-
-app.get('/bill/:session_id', async (req: Request, res: Response) => {
+async (req : Request , res : Response) => {
     //console.log('asdasd')
     let encodedRequestBody = await redisClient.get(req.params.session_id);
-    if (encodedRequestBody == null) {
+    if(encodedRequestBody == null){
 
         res.send(`<!DOCTYPE html>
         <html lang="en">
@@ -80,21 +19,20 @@ app.get('/bill/:session_id', async (req: Request, res: Response) => {
         </body>
         
         </html>`)
-    } else {
+    }else{
 
         //const encodedRequestBody :string = result.toString();
         const decodedRequestBodyString = Buffer.from(encodedRequestBody, "base64");
-        
         const requestBodyObject = JSON.parse(decodedRequestBodyString.toString());
         //const url = generateQR(data);
 
-        let page = `
+		let page = `
 		<!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
   <title>Starbucks Invoice</title>
-  <link rel="stylesheet" href="http://localhost:4000/invoice_page/style.css">
+  <link rel="stylesheet" href="./style.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -176,7 +114,7 @@ app.get('/bill/:session_id', async (req: Request, res: Response) => {
 			</table>
 		</article><br><br>
 		<div class="frame">
-			<button class="custom-btn btn-5" onClick=""><span>Payment Link</span></button>  			
+			<button class="custom-btn btn-5"><span>Payment Link</span></button>  			
 		</div>
 		<br><br><br><br><br><br><br>
 		<aside>
@@ -191,48 +129,16 @@ app.get('/bill/:session_id', async (req: Request, res: Response) => {
 	</body>
 </html>
 <!-- partial -->
-  <script  src="http://localhost:4000/invoice_page/script.js"></script>
-  <script type="application/javascript" crossorigin="anonymous" src="https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/DXBfuu25296246458637.js" onload="onScriptLoad();"> </script>
-  <script>
-  function onScriptLoad(){
-      var config = {
-        "root": "",
-        "flow": "DEFAULT",
-        "data": {
-        "orderId": "", /* update order id */
-        "token": "", /* update token value */
-        "tokenType": "TXN_TOKEN",
-        "amount": "" /* update amount */
-        },
-        "handler": {
-          "notifyMerchant": function(eventName,data){
-            console.log("notifyMerchant handler function called");
-            console.log("eventName => ",eventName);
-            console.log("data => ",data);
-          } 
-        }
-      };
+  <script  src="./script.js"></script>
 
-      if(window.Paytm && window.Paytm.CheckoutJS){
-          window.Paytm.CheckoutJS.onLoad(function excecuteAfterCompleteLoad() {
-              // initialze configuration using init method 
-              window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-                  // after successfully updating configuration, invoke JS Checkout
-                  window.Paytm.CheckoutJS.invoke();
-              }).catch(function onError(error){
-                  console.log("error => ",error);
-              });
-          });
-      } 
-  }
-</script>
 </body>
 </html>
 
 		`
 
-        res.send(page);
+        res.send(requestBodyObject);
     }
-})
-console.log('server started')
-app.listen(port);
+}
+
+
+export {bill_generate}

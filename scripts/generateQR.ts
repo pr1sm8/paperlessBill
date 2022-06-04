@@ -1,6 +1,6 @@
 var QRCode = require("qrcode-svg");
 function generateQR(data: string) {
-    let url = "http://http://10.64.30.131:4000/bill/" + data;
+    let url = "http://10.64.30.131:4000/bill/" + data;
 
     var qrcode = new QRCode({
         content: url,
