@@ -47,19 +47,32 @@ app.get('/getQR', async (req, res) => {
 
 })
 
-app.get('/bill/:session_id' , (req , res) =>{
-    redisClient.get(req.params.session_id, (err, result) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            
-            const encodedRequestBody :string = result.toString();
-            const decodedRequestBodyString = Buffer.from(encodedRequestBody, "base64");
-            const requestBodyObject = JSON.parse(decodedRequestBodyString.toString());
-            //const url = generateQR(data);
-            res.send(requestBodyObject);
-        }
-    });
+app.get('/bill/:session_id' , async (req , res) =>{
+    //console.log('asdasd')
+    let encodedRequestBody = await redisClient.get(req.params.session_id);
+    if(encodedRequestBody == null){
+
+        res.send(`<!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="utf-8">
+            <title>Error</title>
+        </head>
+        
+        <body>
+            <pre>requested bill doesn't exist</pre>
+        </body>
+        
+        </html>`)
+    }else{
+
+        //const encodedRequestBody :string = result.toString();
+        const decodedRequestBodyString = Buffer.from(encodedRequestBody, "base64");
+        const requestBodyObject = JSON.parse(decodedRequestBodyString.toString());
+        //const url = generateQR(data);
+        res.send(requestBodyObject);
+    }
 })
 
 app.listen(port);
