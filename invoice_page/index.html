@@ -1,4 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Starbucks Invoice</title>
+  <link rel="stylesheet" href="./style.css">
 
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -11,20 +22,20 @@
 		<header>
 			<h1>Invoice</h1>
 			<address contenteditable>
-				<p>Jonathan Neal</p>
-				<p>101 E. Chapman Ave<br>Orange, CA 92866</p>
-				<p>(800) 555-1234</p>
+				<p>Starbucks Coffee</p>
+				<p>KBR Park Jubilee hills(Film nagar)</p>
+				<p>070328 65068</p>
 			</address>
-			<span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>
+			<!-- <span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span> -->
 		</header>
 		<article>
 			<h1>Recipient</h1>
 			<address contenteditable>
-				<p>Some Company<br>c/o Some Guy</p>
+				<p>Starbucks<br>Invoice</p>
 			</address>
 			<table class="meta">
 				<tr>
-					<th><span contenteditable>Invoice #</span></th>
+					<th><span contenteditable>Invoice</span></th>
 					<td><span contenteditable>101138</span></td>
 				</tr>
 				<tr>
@@ -32,7 +43,7 @@
 					<td><span contenteditable>January 1, 2012</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Amount Due</span></th>
+					<th><span contenteditable>Time</span></th>
 					<td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
 				</tr>
 			</table>
@@ -48,7 +59,8 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
+						<!-- <td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td> -->
+						<td><span contenteditable>Front End Consultation</span></td>
 						<td><span contenteditable>Experience Review</span></td>
 						<td><span data-prefix>$</span><span contenteditable>150.00</span></td>
 						<td><span contenteditable>4</span></td>
@@ -56,14 +68,14 @@
 					</tr>
 				</tbody>
 			</table>
-			<a class="add">+</a>
+			<!-- <a class="add">+</a> -->
 			<table class="balance">
 				<tr>
-					<th><span contenteditable>Total</span></th>
+					<th><span contenteditable>Total Items</span></th>
 					<td><span data-prefix>$</span><span>600.00</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Amount Paid</span></th>
+					<th><span contenteditable>Total Price</span></th>
 					<td><span data-prefix>$</span><span contenteditable>0.00</span></td>
 				</tr>
 				<tr>
@@ -71,12 +83,24 @@
 					<td><span data-prefix>$</span><span>600.00</span></td>
 				</tr>
 			</table>
-		</article>
+		</article><br><br>
+		<div class="frame">
+			<button class="custom-btn btn-5"><span>Payment Link</span></button>  			
+		</div>
+		<br><br><br><br><br><br><br>
 		<aside>
 			<h1><span contenteditable>Additional Notes</span></h1>
 			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+				<span>This is a computer generated invoice. Please do visit our store</span>
+				
 			</div>
 		</aside>
+
+
 	</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
 </html>
